@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <sys/wait.h>
+#include <sys/types.h>
 #include <stdlib.h>
 
 static int	create_pipe_if_needed(int fd[2], char **next_cmd)
