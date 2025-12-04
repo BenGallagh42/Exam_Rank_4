@@ -10,7 +10,7 @@ static int	create_pipe_if_needed(int fd[2], char **next_cmd)
 	return (0);
 }
 
-static void	child_redirection(int prev_fd, int fd[2], char **next_cmd)
+static void	child_redirections(int prev_fd, int fd[2], char **next_cmd)
 {
 	if (prev_fd != -1)
 	{
@@ -28,7 +28,7 @@ static void	child_redirection(int prev_fd, int fd[2], char **next_cmd)
 static void	child_execution(char **cmd)
 {
 	execvp(cmd[0], cmd);
-	exit(1);
+	_exit(1);
 }
 
 static int	parent_update(int prev_fd, int fd[2], char **next_cmd)
@@ -45,7 +45,7 @@ static int	parent_update(int prev_fd, int fd[2], char **next_cmd)
 
 int	picoshell(char **cmds[])
 {
-	if (!cmds)
+	if (!cmds || !cmds[0])
 		return (1);
 
 	int		i = 0;
@@ -71,7 +71,7 @@ int	picoshell(char **cmds[])
 		// Fils
 		if (pid == 0)
 		{
-			child_redirection(prev_fd, fd, cmds[i + 1]);
+			child_redirections(prev_fd, fd, cmds[i + 1]);
 			child_execution(cmds[i]);
 		}
 
@@ -79,6 +79,8 @@ int	picoshell(char **cmds[])
 		prev_fd = parent_update(prev_fd, fd, cmds[i + 1]);
 		i++;
 	}
+	if (prev_fd != -1)
+        close(prev_fd);
 
 	// Attente
 	int	ret = 0;

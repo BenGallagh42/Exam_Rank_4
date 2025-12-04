@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/types.h>
 
 static void	child_read_mode(int fd[2], char *const argv[])
 {
