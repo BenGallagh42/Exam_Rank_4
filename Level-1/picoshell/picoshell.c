@@ -82,7 +82,7 @@ int	picoshell(char **cmds[])
 	int	status;
 	while (wait(&status) > 0)
 	{
-		// if (WIFEXITED(status) && WEXITSTATUS(status) != 0) <- Need to be commented out to pass 
+		// if (WIFEXITED(status) && WEXITSTATUS(status) != 0) <- Need to be commented out to pass
 		// 	ret = 1;
 	}
 	return (ret);
