@@ -38,7 +38,8 @@ static node *parse_parenthesis(char **s)
 static node *parse_multiplication(char **s)
 {
     node *left = parse_parenthesis(s);
-    if (!left) return (NULL);
+    if (!left)
+        return (NULL);
 
     while (**s == '*')
     {
@@ -57,7 +58,8 @@ static node *parse_multiplication(char **s)
 static node *parse_addition(char **s)
 {
     node *left = parse_multiplication(s);
-    if (!left) return (NULL);
+    if (!left)
+        return (NULL);
 
     while (**s == '+')
     {
