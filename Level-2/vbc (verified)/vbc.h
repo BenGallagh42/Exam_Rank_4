@@ -1,5 +1,4 @@
-#ifndef VBC_H
-#define VBC_H
+// Code given in vbc.c file in /subjects/vbc/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,9 +22,3 @@ int accept(char **s, char c);
 int expect(char **s, char c);
 int eval_tree(node *tree);
 node *parse_expr(char *s);
-static node *parse_number(char **s);
-static node *parse_parenthesis(char **s);
-static node *parse_multiplication(char **s);
-static node *parse_addition(char **s);
-
-#endif
